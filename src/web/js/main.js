@@ -78,7 +78,7 @@
 			var utterance = new SpeechSynthesisUtterance(text);
 			utterance.lang = "de-DE";
 			if (navigator.userAgent.match(/iPhone|iPod|iPad/i)) {
-				utterance.rate = 0.1;
+				utterance.rate = 0.2;
 			}
 			utterance.onpause = utterance.onend = function() {
 				button.classList.remove("playing");
