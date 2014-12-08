@@ -1,20 +1,25 @@
 /*jslint white:true, browser:true, plusplus:true, vars:true, todo: true */
 /*global App, NodeList, SpeechSynthesisUtterance, speechSynthesis, ontouchstart */
+var App = App || {};
 (function() {
 	"use strict";
 	
 	var d = document;
-	var APP = {};
 	var score = 0;
 	var	totalAttempts = 0;
 
+    // Config
+    App.targetLang = "de-DE";
+    App.sourceLangFile = "data/en-EN.txt";
+    App.targetLangFile = "data/de-DE.txt";
+
     // Setup
 	if (window.ontouchstart === undefined) {
-		APP.touchEvent = "mousedown";
-		APP.touchEventEnd = "mouseup";
+		App.touchEvent = "mousedown";
+		App.touchEventEnd = "mouseup";
 	} else {
-		APP.touchEvent = "touchstart";
-		APP.touchEventEnd = "touchend";
+		App.touchEvent = "touchstart";
+		App.touchEventEnd = "touchend";
 	}
 
 
@@ -66,7 +71,7 @@
     };
 
     // Event listeners
-	d.querySelector(".actions .speak").addEventListener(APP.touchEvent, function(event) {
+	d.querySelector(".actions .speak").addEventListener(App.touchEvent, function(event) {
 		var phrase = d.querySelector(".phrase.current");
 		var button = event.currentTarget;
 		if (button.classList.contains("playing")) {
@@ -76,7 +81,7 @@
 			button.classList.add("playing");
 			var text = phrase.querySelector(".target").textContent;
 			var utterance = new SpeechSynthesisUtterance(text);
-			utterance.lang = "de-DE";
+			utterance.lang = App.targetLang;
 			if (navigator.userAgent.match(/iPhone|iPod|iPad/i)) {
 				utterance.rate = 0.2;
 			}
@@ -88,7 +93,7 @@
 	});
 	
 	var actionButton = d.querySelectorAll(".actions .known, .actions .unknown");
-	actionButton.addEventListener(APP.touchEvent, function(event) {
+	actionButton.addEventListener(App.touchEvent, function(event) {
 		var known = event.currentTarget.classList.contains("known");
 		var resultClass = known ? "known" : "unknown";
 		if (known) {
@@ -122,7 +127,7 @@
     // Initialization
     (function init() {
         disableDrag();
-        App.loadFiles("data/en-EN.txt", "data/de-DE.txt", function(data) {
+        App.loadFiles(App.sourceLangFile, App.targetLangFile, function(data) {
             renderPhrases(data);
             setScore(0, 0);
 
