@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'entypo';
+    src: url('../fonts/entypo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: #062e3b;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	font-size: 1.6rem;
+	line-height: 1.5;
+	overflow: hidden;
+}
+h1 {
+	color: #F6A007;
+	font-size: 4.8rem;
+	font-weight: 200;
+	letter-spacing: 0.03em;
+}
+h2 {
+	display: none;
+}
+#main {
+	max-width: 50em;
+	margin: auto;
+	padding: 3em 1em 2em;
+	overflow: auto;
+	height: 100vh;
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+	overflow-x: hidden;
+}
+.actions {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 4em;
+	width: 100%;
+	z-index: 100;
+	overflow: hidden;
+	box-sizing: border-box;
+	background-color: rgb(10,115,155);
+}
+.actions div {
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	visibility: hidden;
+	position: relative;
+	overflow: hidden;
+}
+.actions .speak {
+	width: 0;
+}
+body.speech-on .actions div {
+	width: 40%;
+}
+body.speech-on .actions .speak {
+	width: 20%;
+}
+.actions div:active:after {
+	color: #F6A007;
+}
+.actions div:after {
+	visibility: visible;
+	line-height: .8;
+	font-family: 'entypo';
+	font-size: 5em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.actions .unknown:after {
+	line-height: .9;
+	content: '\1F44E';
+}
+.actions .known:after {
+	content: '\1F44D';
+}
+.actions .speak:after {
+	font-size: 6em;
+	content: "\25B6";
+	line-height: .7;
+}
+.actions .playing.speak:after {
+	content: "\25A0";
+}
+
+.hud {
+	background-color: rgb(10,115,155);
+	color: #eee;
+	text-align: center;
+	font-size: 2rem;
+	line-height: 2;
+	height: 2em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	left: 50%;
+	margin-left: -50%;
+	box-sizing: border-box;
+	z-index: 100;
+}
+.phrase {
+	display: none;
+	border-radius: 1rem;
+	left: 1.5rem;
+	right: 1.5rem;
+	top: 4em;
+	transition: -webkit-transform 0.3s linear;
+	transition: transform 0.3s linear;
+	position: absolute;
+	height: calc(100% - 9.4em);
+	overflow: auto;
+	box-sizing: border-box;
+	z-index: 10;
+}
+.phrase.current, .phrase.done, .phrase.next {
+	display: block;
+}
+.phrase.next {
+	-webkit-transform: translate(0, -200%);
+	transform: translate(0, -200%);
+}
+.phrase.unknown {
+	-webkit-transform: translate(-150%, 0);
+	transform: translate(-150%, 0);
+}
+.phrase.known {
+	-webkit-transform: translate(150%, 0);
+	transform: translate(150%, 0);
+}
+.phrase .target {
+	margin-bottom: 3vw;
+}
+.phrase .source {
+	opacity: 0;
+	color: #0fdbff;
+	transition: opacity .2s linear;
+}
+.phrase.selected .source {
+	opacity: 1;
+}
