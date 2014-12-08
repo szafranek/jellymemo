@@ -74,7 +74,7 @@
 			button.classList.remove("playing");
 		} else {
 			button.classList.add("playing");
-			var text = phrase.querySelector("div[lang=de]").textContent;
+			var text = phrase.querySelector(".target").textContent;
 			var utterance = new SpeechSynthesisUtterance(text);
 			utterance.lang = "de-DE";
 			if (navigator.userAgent.match(/iPhone|iPod|iPad/i)) {
