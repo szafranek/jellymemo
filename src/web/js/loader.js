@@ -1,8 +1,15 @@
-/*jslint white:false, browser:true */
-/*global console */
 var App = App || {};
 (function() {
     "use strict";
+
+    /** Module definition */
+    App.loadFiles = function (sourceLang, targetLang, callback) {
+        var state = new LoadState();
+        state.toLoad.push(sourceLang);
+        state.toLoad.push(targetLang);
+        loadFile(sourceLang, state, 0, callback);
+        loadFile(targetLang, state, 1, callback);
+    };
 
     /** Functions */
     function lineToArray(line) {
@@ -51,11 +58,7 @@ var App = App || {};
                 }
             }
         };
-
-        xhr.onerror = function() {
-            console.log("Error loading files");
-        };
-
+        xhr.onerror = function() {};
         xhr.send();
     }
 
@@ -68,12 +71,4 @@ var App = App || {};
         return this.loaded.length === this.toLoad.length;
     };
 
-    /** Module definition */
-    App.loadFiles = function (sourceLang, targetLang, callback) {
-        var state = new LoadState();
-        state.toLoad.push(sourceLang);
-        state.toLoad.push(targetLang);
-        loadFile(sourceLang, state, 0, callback);
-        loadFile(targetLang, state, 1, callback);
-    };
 }());

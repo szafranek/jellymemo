@@ -26,16 +26,24 @@ h1 {
 h2 {
 	display: none;
 }
-#main {
+.main {
 	max-width: 50em;
 	margin: auto;
 	padding: 3em 1em 2em;
 	overflow: auto;
 	height: 100vh;
-	width: 100%;
+	width: 100vm;
 	box-sizing: border-box;
 	position: relative;
 	overflow-x: hidden;
+}
+.content {
+	left: 1em;
+	right: 1em;
+	top: 4em;
+	height: calc(100% - 9em);
+	box-sizing: border-box;
+	position: absolute;
 }
 .actions {
 	position: fixed;
@@ -113,16 +121,12 @@ body.speech-on .actions .speak {
 }
 .phrase {
 	display: none;
-	border-radius: 1rem;
-	left: 1.5rem;
-	right: 1.5rem;
-	top: 4em;
 	transition: -webkit-transform 0.3s linear;
 	transition: transform 0.3s linear;
 	position: absolute;
-	height: calc(100% - 9.4em);
+	width: 100%;
+	height: 100%;
 	overflow: auto;
-	box-sizing: border-box;
 	z-index: 10;
 }
 .phrase.current, .phrase.done, .phrase.next {
