@@ -28,7 +28,6 @@
 "currency.spending.noButton" = "Nein";
 "currency.spending.title" = "Bitte bestätigen";
 "currency.spending.yesButton" = "Ja";
-"DEC_JS_IOS_Description" = "";
 "event.intro.Body" = "Sammle alle Teile in den gekennzeichneten Leveln und schnapp Dir tolle Belohnungen!";
 "event.intro.Button" = "Sammeln";
 "event.intro.xmas.Body1" = "Sammle alle Festtags-Teile in den markierten Leveln und sichere \nDir einzigartige Preise!";
