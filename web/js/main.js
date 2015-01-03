@@ -1,16 +1,13 @@
-/*global SpeechSynthesisUtterance, Util */
-var App = App || {};
+/*global SpeechSynthesisUtterance, speechSynthesis, Util, App */
 (function() {
 	"use strict";
-	
 	var d = document;
-	var score = 0;
-	var	totalAttempts = 0;
 
-    /** Config */
-    App.targetLang = "de-DE";
-    App.sourceLangFile = "data/en-EN.strings";
-    App.targetLangFile = "data/de-DE.strings";
+	var config = {
+		targetLang: "de-DE",
+		sourceLangFile: "data/en-EN.strings",
+		targetLangFile: "data/de-DE.strings"
+	};
 
 	/** Initialization */
 	init();
@@ -18,7 +15,7 @@ var App = App || {};
 	/** Functions */
 	function init() {
 		disableDrag();
-		App.loadFiles(App.sourceLangFile, App.targetLangFile, function(data) {
+		App.loadFiles(config.sourceLangFile, config.targetLangFile, function(data) {
 			renderPhrases(data);
 			setScore(0, 0);
 
@@ -48,6 +45,11 @@ var App = App || {};
 	
 	function setScore(knownScore, totalScore) {
 		d.querySelector(".hud").innerHTML = knownScore + " / " + totalScore;
+	}
+
+	function getScore() {
+		var score = d.querySelector(".hud").innerHTML.split(" / ");
+		return score;
 	}
 
     function renderPhrases(data) {
@@ -81,7 +83,7 @@ var App = App || {};
 			button.classList.add("playing");
 			var text = phrase.querySelector(".target").textContent;
 			var utterance = new SpeechSynthesisUtterance(text);
-			utterance.lang = App.targetLang;
+			utterance.lang = config.targetLang;
 			if (navigator.userAgent.match(/iPhone|iPod|iPad/i)) {
 				utterance.rate = 0.2;
 			}
@@ -96,11 +98,13 @@ var App = App || {};
 	Util.addEventListener(actionButtons, Util.touchEvent, function markAnswer(event) {
 		var known = event.currentTarget.classList.contains("known");
 		var resultClass = known ? "known" : "unknown";
+		var scores = getScore();
+		var current = scores[0];
+		var total = scores[1];
 		if (known) {
-			score++;
+			++current;
 		}
-		totalAttempts++;
-        setScore(score, totalAttempts);
+        setScore(current, ++total);
 
 		var phrase = d.querySelector(".phrase.current");
 		phrase.classList.add("done");
