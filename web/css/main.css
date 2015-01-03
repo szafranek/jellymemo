@@ -9,8 +9,6 @@ html {
 }
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	background: #062e3b;
-	color: #fff;
 	margin: 0;
 	padding: 0;
 	font-size: 1.6rem;
@@ -18,7 +16,6 @@ body {
 	overflow: hidden;
 }
 h1 {
-	color: #F6A007;
 	font-size: 4.8rem;
 	font-weight: 200;
 	letter-spacing: 0.03em;
@@ -54,7 +51,6 @@ h2 {
 	z-index: 100;
 	overflow: hidden;
 	box-sizing: border-box;
-	background-color: rgb(10,115,155);
 }
 .actions div {
 	width: 50%;
@@ -73,9 +69,6 @@ body.speech-on .actions div {
 }
 body.speech-on .actions .speak {
 	width: 20%;
-}
-.actions div:active:after {
-	color: #F6A007;
 }
 .actions div:after {
 	visibility: visible;
@@ -105,8 +98,6 @@ body.speech-on .actions .speak {
 }
 
 .hud {
-	background-color: rgb(10,115,155);
-	color: #eee;
 	text-align: center;
 	font-size: 2rem;
 	line-height: 2;
@@ -149,7 +140,6 @@ body.speech-on .actions .speak {
 }
 .phrase .source {
 	opacity: 0;
-	color: #0fdbff;
 	transition: opacity .2s linear;
 }
 .phrase.selected .source {

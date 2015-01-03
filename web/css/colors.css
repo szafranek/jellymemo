@@ -1,0 +1,20 @@
+body {
+    background: #062e3b;
+    color: #fff;
+}
+h1 {
+    color: #F6A007;
+}
+.actions {
+    background-color: rgb(10,115,155);
+}
+.actions div:active:after {
+    color: #F6A007;
+}
+.hud {
+    background-color: rgb(10,115,155);
+    color: #eee;
+}
+.phrase .source {
+    color: #0fdbff;
+}
