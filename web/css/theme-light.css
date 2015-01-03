@@ -1,0 +1,17 @@
+body {
+    color: #59554E;
+    background-color: #F3F4E5;
+}
+.main {
+    background-color: #F6F6F6;
+}
+.actions, .hud {
+    background-color: #59554E;
+    color: #F3F4E5;
+}
+.actions div:active:after {
+    color: #A1C1BE;
+}
+.phrase .source {
+    color: #990100;
+}
