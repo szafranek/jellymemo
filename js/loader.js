@@ -13,6 +13,9 @@ var App = App || {};
 
     /** Functions */
     function lineToArray(line) {
+        if (!line.match(/".*"\s=\s".*";/i)) {
+            return null;
+        }
         var arr = line.split("\" = \"");
         arr[0] = arr[0].substring(1);
         arr[1] = arr[1].slice(0, -2);
@@ -26,6 +29,9 @@ var App = App || {};
         var linesSecond = langs[1].split("\n");
         for (i = 0; i < linesFirst.length; i++) {
             var lineFirst = lineToArray(linesFirst[i]);
+            if (!lineFirst) {
+                continue;
+            }
             var keyFirst = lineFirst[0];
             var valFirst = lineFirst[1];
             if (valFirst.length <= 1) {
@@ -33,6 +39,9 @@ var App = App || {};
             }
             for (j = 0; j < linesSecond.length; j++) {
                 var lineSecond = lineToArray(linesSecond[j]);
+                if (!lineSecond) {
+                    continue;
+                }
                 var keySecond = lineSecond[0];
                 var valSecond = lineSecond[1];
                 if (keyFirst === keySecond && valSecond.length > 1) {
