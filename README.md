@@ -1,3 +1,5 @@
+#JellyMemo
+
 A simple flash card app to help you learn foreign languages. You can provide your own source text and translations in any two languages.
 
 ##Instructions
