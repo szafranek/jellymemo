@@ -1,12 +1,14 @@
 @font-face {
-    font-family: 'entypo';
-    src: url('../fonts/entypo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'entypo';
+	src: url('../fonts/entypo.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
+
 html {
-    font-size: 62.5%;
+	font-size: 62.5%;
 }
+
 body {
 	font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	margin: 0;
@@ -15,6 +17,7 @@ body {
 	line-height: 1.5;
 	overflow: hidden;
 }
+
 .main {
 	max-width: 50em;
 	margin: auto;
@@ -26,6 +29,7 @@ body {
 	position: relative;
 	overflow-x: hidden;
 }
+
 .content {
 	left: 1em;
 	right: 1em;
@@ -34,6 +38,7 @@ body {
 	box-sizing: border-box;
 	position: absolute;
 }
+
 .actions {
 	position: fixed;
 	bottom: 0;
@@ -44,6 +49,7 @@ body {
 	overflow: hidden;
 	box-sizing: border-box;
 }
+
 .actions div {
 	width: 50%;
 	height: 100%;
@@ -53,15 +59,19 @@ body {
 	position: relative;
 	overflow: hidden;
 }
+
 .actions .speak {
 	width: 0;
 }
+
 body.speech-on .actions div {
 	width: 40%;
 }
+
 body.speech-on .actions .speak {
 	width: 20%;
 }
+
 .actions div:after {
 	visibility: visible;
 	line-height: .8;
@@ -73,18 +83,22 @@ body.speech-on .actions .speak {
 	width: 100%;
 	height: 100%;
 }
+
 .actions .unknown:after {
 	line-height: .9;
 	content: '\1F44E';
 }
+
 .actions .known:after {
 	content: '\1F44D';
 }
+
 .actions .speak:after {
 	font-size: 6em;
 	content: "\25B6";
 	line-height: .7;
 }
+
 .actions .playing.speak:after {
 	content: "\25A0";
 }
@@ -102,6 +116,7 @@ body.speech-on .actions .speak {
 	box-sizing: border-box;
 	z-index: 100;
 }
+
 .phrase {
 	display: none;
 	transition: -webkit-transform 0.3s linear;
@@ -112,28 +127,35 @@ body.speech-on .actions .speak {
 	overflow: auto;
 	z-index: 10;
 }
+
 .phrase.current, .phrase.done, .phrase.next {
 	display: block;
 }
+
 .phrase.next {
 	-webkit-transform: translate(0, -200%);
 	transform: translate(0, -200%);
 }
+
 .phrase.unknown {
 	-webkit-transform: translate(-150%, 0);
 	transform: translate(-150%, 0);
 }
+
 .phrase.known {
 	-webkit-transform: translate(150%, 0);
 	transform: translate(150%, 0);
 }
+
 .phrase .target {
 	margin-bottom: 3vw;
 }
+
 .phrase .source {
 	opacity: 0;
 	transition: opacity .2s linear;
 }
+
 .phrase.selected .source {
 	opacity: 1;
 }

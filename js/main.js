@@ -32,17 +32,17 @@
 			event.preventDefault();
 		}, false);
 	}
-	
+
 	function isSpeechOn() {
 		return window.speechSynthesis && SpeechSynthesisUtterance !== "undefined";
 	}
 
 	function getRandomPhrase() {
-        var phrases = d.querySelectorAll(".phrase");
+		var phrases = d.querySelectorAll(".phrase");
 		var randomIndex = Math.floor(Math.random() * (phrases.length));
 		return phrases[randomIndex];
 	}
-	
+
 	function setScore(knownScore, totalScore) {
 		d.querySelector(".hud").innerHTML = knownScore + " / " + totalScore;
 	}
@@ -52,27 +52,27 @@
 		return score;
 	}
 
-    function renderPhrases(data) {
-        var templateString = d.querySelector(".phrase-template").innerHTML;
-        var templateParent = d.createElement("div");
-        templateParent.innerHTML = templateString;
-        var template = templateParent.children[0];
+	function renderPhrases(data) {
+		var templateString = d.querySelector(".phrase-template").innerHTML;
+		var templateParent = d.createElement("div");
+		templateParent.innerHTML = templateString;
+		var template = templateParent.children[0];
 
-        var fragment = d.createDocumentFragment();
-        var i, element, string;
-        for (i = 0; i < data.length; i++) {
-            element = template.cloneNode(true);
-            string = element.innerHTML;
-            string = string.replace("{{source}}", data[i][0]);
-            string = string.replace("{{target}}", data[i][1]);
-            element.innerHTML = string;
-            fragment.appendChild(element);
-        }
-        d.querySelector(".content").appendChild(fragment);
-    }
+		var fragment = d.createDocumentFragment();
+		var i, element, string;
+		for (i = 0; i < data.length; i++) {
+			element = template.cloneNode(true);
+			string = element.innerHTML;
+			string = string.replace("{{source}}", data[i][0]);
+			string = string.replace("{{target}}", data[i][1]);
+			element.innerHTML = string;
+			fragment.appendChild(element);
+		}
+		d.querySelector(".content").appendChild(fragment);
+	}
 
-    /** Event listeners */
-    var speakButton = d.querySelector(".actions .speak");
+	/** Event listeners */
+	var speakButton = d.querySelector(".actions .speak");
 	speakButton.addEventListener(Util.touchEvent, function speak(event) {
 		var phrase = d.querySelector(".phrase.current");
 		var button = event.currentTarget;
@@ -93,7 +93,7 @@
 			window.speechSynthesis.speak(utterance);
 		}
 	});
-	
+
 	var actionButtons = d.querySelectorAll(".actions .known, .actions .unknown");
 	Util.addEventListener(actionButtons, Util.touchEvent, function markAnswer(event) {
 		var known = event.currentTarget.classList.contains("known");
@@ -104,7 +104,7 @@
 		if (known) {
 			++current;
 		}
-        setScore(current, ++total);
+		setScore(current, ++total);
 
 		var phrase = d.querySelector(".phrase.current");
 		phrase.classList.add("done");
@@ -115,16 +115,16 @@
 		randomPhrase.classList.add("next");
 
 		setTimeout((function(donePhrase, nextPhrase) {
-            return function() {
-                if (isSpeechOn()) {
-                    window.speechSynthesis.cancel();
-                }
-                donePhrase.classList.remove("done");
-                donePhrase.classList.remove(resultClass);
-                nextPhrase.classList.remove("next");
-                nextPhrase.classList.add("current");
-            };
-        }(phrase, randomPhrase)), 300);
+			return function() {
+				if (isSpeechOn()) {
+					window.speechSynthesis.cancel();
+				}
+				donePhrase.classList.remove("done");
+				donePhrase.classList.remove(resultClass);
+				nextPhrase.classList.remove("next");
+				nextPhrase.classList.add("current");
+			};
+		}(phrase, randomPhrase)), 300);
 	}, false);
 
 	var content = d.querySelector(".content");
