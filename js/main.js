@@ -70,10 +70,19 @@
 		}
 		d.querySelector(".content").appendChild(fragment);
 	}
+	function getVoice(lang) {
+		var voices = window.speechSynthesis.getVoices().filter(function(voice) {
+			return voice.lang === lang;
+		});
+		if (voices.length > 0) {
+			return voices[0];
+		}
+		return null;
+	}
 
 	/** Event listeners */
 	var speakButton = d.querySelector(".actions .speak");
-	speakButton.addEventListener(Util.touchEvent, function speak(event) {
+	speakButton.addEventListener("click", function speak(event) {
 		var phrase = d.querySelector(".phrase.current");
 		var button = event.currentTarget;
 		if (button.classList.contains("playing")) {
@@ -83,10 +92,9 @@
 			button.classList.add("playing");
 			var text = phrase.querySelector(".target").textContent;
 			var utterance = new SpeechSynthesisUtterance(text);
-			utterance.lang = config.targetLang;
-			if (navigator.userAgent.match(/iPhone|iPod|iPad/i)) {
-				utterance.rate = 0.2;
-			}
+			var lang = config.targetLang;
+			utterance.lang = lang;
+			utterance.voice = getVoice(lang);
 			utterance.onpause = utterance.onend = function() {
 				button.classList.remove("playing");
 			};
